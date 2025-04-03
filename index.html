@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
+    <title>UP Forward - Supporting Progressive Local Businesses!</title>
+    
+    <style>
+        /* --- Reset and Box Sizing --- */
+        /* Apply border-box sizing to all elements */
+        html {
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: inherit; /* Inherit from html */
+        }
+
+        /* --- Base Styles (Mobile First Approach!) --- */
+        :root { 
+            --bg-color: #f0f8ff;
+            --text-color: #333;
+            --container-bg: #ffffff;
+            --primary-color: #4682b4;
+            --secondary-color: #5f9ea0;
+            --border-color: #add8e6;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-text-color: #777;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            line-height: 1.6;
+            margin: 0; 
+            padding: 0; 
+            font-size: 16px; 
+            transition: background-color 0.3s, color 0.3s; 
+            /* Prevent horizontal scrollbar! Nyaa~ */
+            overflow-x: hidden; 
+        }
+
+        /* Accessibility Class for Larger Text */
+        body.larger-text {
+            font-size: 18px; 
+            line-height: 1.7; 
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            --bg-color: #2c3e50; 
+            --text-color: #ecf0f1; 
+            --container-bg: #34495e; 
+            --primary-color: #5dade2; 
+            --secondary-color: #76d7c4; 
+            --border-color: #5dade2; 
+            --shadow-color: rgba(0, 0, 0, 0.4); 
+            --footer-text-color: #bdc3c7; 
+        }
+        body.dark-mode a { color: var(--primary-color); }
+        body.dark-mode .container { background-color: var(--container-bg); box-shadow: 0 2px 6px var(--shadow-color); }
+        body.dark-mode h1, body.dark-mode a { color: var(--primary-color); }
+        body.dark-mode h2 { color: var(--secondary-color); border-bottom-color: var(--border-color); }
+        body.dark-mode iframe { border-color: var(--border-color); }
+        body.dark-mode footer { color: var(--footer-text-color); border-top-color: var(--border-color);} /* Ensure footer border changes too */
+         body.dark-mode .accessibility-controls button { background-color: var(--primary-color); color: var(--bg-color); }
+        /* Revisit the iframe filter if needed - removing for now as it can be buggy */
+        /* body.dark-mode iframe { filter: invert(90%) hue-rotate(180deg); } */
+        /* --- End Dark Mode Styles --- */
+
+
+        .container {
+            width: 95%; /* Keeps it fluid */
+            max-width: 1100px; /* Set max-width based on largest desired desktop size */
+            margin: 15px auto; 
+            padding: 15px; 
+            background-color: var(--container-bg); 
+            border-radius: 8px; 
+            box-shadow: 0 2px 6px var(--shadow-color); 
+            transition: background-color 0.3s, box-shadow 0.3s; 
+        }
+
+        h1 {
+            color: var(--primary-color); 
+            text-align: center;
+            font-size: 1.8em; 
+            margin-bottom: 15px;
+            transition: color 0.3s;
+        }
+
+        h2 {
+            color: var(--secondary-color); 
+            border-bottom: 2px solid var(--border-color); 
+            padding-bottom: 5px;
+            margin-top: 25px; 
+            font-size: 1.4em; 
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        p {
+            margin-bottom: 15px;
+             word-wrap: break-word; /* Helps prevent long words from overflowing */
+        }
+
+        iframe {
+            border: 1px solid var(--border-color); 
+            border-radius: 5px; 
+            width: 100%; /* Should fill container width perfectly */
+            min-height: 450px; 
+            margin-top: 15px;
+            display: block; /* Prevents extra space below */
+            transition: border-color 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: var(--footer-text-color);
+            border-top: 1px solid var(--border-color); 
+            padding-top: 15px;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        
+        .accessibility-controls button {
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        
+        .accessibility-controls button:hover {
+            opacity: 0.9;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            text-decoration: underline; 
+        }
+
+        /* --- Media Queries (Adjusting layout and text sizes) --- */
+        @media (min-width: 600px) {
+            body { font-size: 17px; } 
+            body.larger-text { font-size: 19px; } 
+            .container { width: 90%; padding: 20px; border-radius: 10px; }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.6em; }
+            iframe { min-height: 500px; }
+        }
+
+        @media (min-width: 992px) {
+             body { font-size: 18px; } 
+             body.larger-text { font-size: 20px; } 
+            /* Container max-width is already set, no need to change width percentage here */
+            .container { padding: 25px; } 
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.7em; }
+            iframe { min-height: 550px; }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🐾 UP Forward 🐾</h1>
+        <p>Welcome! This is UP Forward, a community space dedicated to highlighting fantastic local businesses right here in Michigan's beautiful Upper Peninsula!</p>
+        <p>Our goal is to help everyone make informed choices and support businesses that align with progressive values like equality, inclusivity, sustainability, and fair labor practices. Let's uplift the businesses doing good work together! ♥</p>
+
+        <h2>💌 Help Us Grow! Submit a Business! 💌</h2>
+        <p>Do you know a local gem that deserves to be featured? A place that embodies progressive values and makes the UP an even better place? Please let us know using the form below! Every submission helps build a more comprehensive and helpful community resource.</p>
+        
+        <!-- IMPORTANT: Replace the src="..." with YOUR Google Form embed link! -->
+        <iframe src="YOUR_GOOGLE_FORM_EMBED_LINK_GOES_HERE" frameborder="0" marginheight="0" marginwidth="0">Loading form... Please wait!</iframe>
+        <p>All submissions are reviewed before being added to the public list. This helps ensure the directory accurately reflects businesses committed to these shared values.</p>
+
+        <h2>💖 Find Progressive Places! 💖</h2>
+        <p>Ready to discover your next favorite local spot? Explore the curated list below of approved businesses in the UP known for aligning with progressive values. This directory grows thanks to community contributions (like yours!) and careful vetting.</p>
+        <p>On desktop, use `Ctrl+F` (or `Cmd+F` on Mac) on your keyboard to search for a specific business name or town within the list! On mobile, your browser might have a "Find in page" option.</p>
+
+        <!-- IMPORTANT: Replace the src="..." with YOUR Google Sheet published embed link! -->
+        <!-- Make sure you published the *correct* sheet/view that only shows APPROVED businesses! -->
+        <iframe src="YOUR_GOOGLE_SHEET_PUBLISHED_EMBED_LINK_GOES_HERE" frameborder="0" marginheight="0" marginwidth="0">Loading the directory... One moment please!</iframe>
+
+        <footer>
+            <div class="accessibility-controls">
+                <p>Accessibility Options:</p>
+                <button id="toggle-text-size">Toggle Text Size</button>
+                <button id="toggle-dark-mode">Toggle Dark Mode</button>
+            </div>
+            
+            <p style="margin-top: 20px;">UP Forward - Built by the community, for the community! ♥</p>
+            <p>(This site utilizes Google Forms and Sheets for easy, free community management.)</p>
+        </footer>
+
+    </div> <!-- End of container -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bodyElement = document.body;
+            const textSizeButton = document.getElementById('toggle-text-size');
+            const darkModeButton = document.getElementById('toggle-dark-mode');
+
+            textSizeButton.addEventListener('click', () => {
+                bodyElement.classList.toggle('larger-text');
+            });
+
+            darkModeButton.addEventListener('click', () => {
+                bodyElement.classList.toggle('dark-mode');
+            });
+        });
+    </script>
+
+</body>
+</html>
