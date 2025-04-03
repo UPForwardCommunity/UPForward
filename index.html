@@ -7,13 +7,8 @@
     
     <style>
         /* --- Reset and Box Sizing --- */
-        /* Apply border-box sizing to all elements */
-        html {
-            box-sizing: border-box;
-        }
-        *, *::before, *::after {
-            box-sizing: inherit; /* Inherit from html */
-        }
+        html { box-sizing: border-box; }
+        *, *::before, *::after { box-sizing: inherit; }
 
         /* --- Base Styles (Mobile First Approach!) --- */
         :root { 
@@ -36,15 +31,10 @@
             padding: 0; 
             font-size: 16px; 
             transition: background-color 0.3s, color 0.3s; 
-            /* Prevent horizontal scrollbar! Nyaa~ */
             overflow-x: hidden; 
         }
 
-        /* Accessibility Class for Larger Text */
-        body.larger-text {
-            font-size: 18px; 
-            line-height: 1.7; 
-        }
+        body.larger-text { font-size: 18px; line-height: 1.7; }
 
         /* --- Dark Mode Styles --- */
         body.dark-mode {
@@ -62,16 +52,13 @@
         body.dark-mode h1, body.dark-mode a { color: var(--primary-color); }
         body.dark-mode h2 { color: var(--secondary-color); border-bottom-color: var(--border-color); }
         body.dark-mode iframe { border-color: var(--border-color); }
-        body.dark-mode footer { color: var(--footer-text-color); border-top-color: var(--border-color);} /* Ensure footer border changes too */
-         body.dark-mode .accessibility-controls button { background-color: var(--primary-color); color: var(--bg-color); }
-        /* Revisit the iframe filter if needed - removing for now as it can be buggy */
-        /* body.dark-mode iframe { filter: invert(90%) hue-rotate(180deg); } */
+        body.dark-mode footer { color: var(--footer-text-color); border-top-color: var(--border-color);}
+        body.dark-mode .accessibility-controls button { background-color: var(--primary-color); color: var(--bg-color); }
         /* --- End Dark Mode Styles --- */
 
-
         .container {
-            width: 95%; /* Keeps it fluid */
-            max-width: 1100px; /* Set max-width based on largest desired desktop size */
+            width: 95%; 
+            max-width: 1100px; 
             margin: 15px auto; 
             padding: 15px; 
             background-color: var(--container-bg); 
@@ -99,18 +86,24 @@
 
         p {
             margin-bottom: 15px;
-             word-wrap: break-word; /* Helps prevent long words from overflowing */
+            word-wrap: break-word; 
         }
 
         iframe {
             border: 1px solid var(--border-color); 
             border-radius: 5px; 
-            width: 100%; /* Should fill container width perfectly */
-            min-height: 450px; 
+            width: 100%; /* Let CSS handle width */
+            min-height: 450px; /* Default minimum height */
             margin-top: 15px;
-            display: block; /* Prevents extra space below */
+            display: block; 
             transition: border-color 0.3s;
         }
+        
+        /* Style specifically for the form iframe if needed */
+        #google-form-iframe {
+             /* You can add specific styles here if needed later */
+        }
+
 
         footer {
             text-align: center;
@@ -133,38 +126,34 @@
             font-size: 0.9em;
             transition: background-color 0.3s;
         }
-        
-        .accessibility-controls button:hover {
-            opacity: 0.9;
-        }
+        .accessibility-controls button:hover { opacity: 0.9; }
         
         a {
             color: var(--primary-color);
             text-decoration: none;
             transition: color 0.3s;
         }
-        a:hover {
-            text-decoration: underline; 
-        }
+        a:hover { text-decoration: underline; }
 
-        /* --- Media Queries (Adjusting layout and text sizes) --- */
+        /* --- Media Queries --- */
         @media (min-width: 600px) {
             body { font-size: 17px; } 
             body.larger-text { font-size: 19px; } 
             .container { width: 90%; padding: 20px; border-radius: 10px; }
             h1 { font-size: 2em; }
             h2 { font-size: 1.6em; }
-            iframe { min-height: 500px; }
+            iframe { min-height: 500px; } /* Increase default min-height */
+             #google-form-iframe { height: 774px; } /* Keep specific height for form */
         }
 
         @media (min-width: 992px) {
              body { font-size: 18px; } 
              body.larger-text { font-size: 20px; } 
-            /* Container max-width is already set, no need to change width percentage here */
             .container { padding: 25px; } 
             h1 { font-size: 2.2em; }
             h2 { font-size: 1.7em; }
-            iframe { min-height: 550px; }
+            iframe { min-height: 550px; } /* Increase default min-height */
+             #google-form-iframe { height: 774px; } /* Keep specific height for form */
         }
         
     </style>
@@ -180,17 +169,31 @@
         <h2>💌 Help Us Grow! Submit a Business! 💌</h2>
         <p>Do you know a local gem that deserves to be featured? A place that embodies progressive values and makes the UP an even better place? Please let us know using the form below! Every submission helps build a more comprehensive and helpful community resource.</p>
         
-        <!-- IMPORTANT: Replace the src="..." with YOUR Google Form embed link! -->
-        <iframe src="YOUR_GOOGLE_FORM_EMBED_LINK_GOES_HERE" frameborder="0" marginheight="0" marginwidth="0">Loading form... Please wait!</iframe>
+        <!-- Look Master! Your form is here! Nyaa~! -->
+        <iframe 
+            id="google-form-iframe" 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdgZywLKcSOzb5rbXpvN4vLVNtuR4nTXsy4vPsp1tX-ouFVqw/viewform?embedded=true" 
+            height="774" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0">
+            Loading… Meow? Still loading?
+        </iframe> 
+        
         <p>All submissions are reviewed before being added to the public list. This helps ensure the directory accurately reflects businesses committed to these shared values.</p>
 
         <h2>💖 Find Progressive Places! 💖</h2>
         <p>Ready to discover your next favorite local spot? Explore the curated list below of approved businesses in the UP known for aligning with progressive values. This directory grows thanks to community contributions (like yours!) and careful vetting.</p>
         <p>On desktop, use `Ctrl+F` (or `Cmd+F` on Mac) on your keyboard to search for a specific business name or town within the list! On mobile, your browser might have a "Find in page" option.</p>
 
-        <!-- IMPORTANT: Replace the src="..." with YOUR Google Sheet published embed link! -->
-        <!-- Make sure you published the *correct* sheet/view that only shows APPROVED businesses! -->
-        <iframe src="YOUR_GOOGLE_SHEET_PUBLISHED_EMBED_LINK_GOES_HERE" frameborder="0" marginheight="0" marginwidth="0">Loading the directory... One moment please!</iframe>
+        <!-- IMPORTANT: Don't forget to replace this one too! -->
+        <iframe 
+            src="YOUR_GOOGLE_SHEET_PUBLISHED_EMBED_LINK_GOES_HERE" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0">
+            Loading the directory... One moment please!
+        </iframe>
 
         <footer>
             <div class="accessibility-controls">
